@@ -9,46 +9,29 @@ export default class Pawn extends Piece {
 
     getAvailableMoves(board) {
         let location = board.findPiece(this)
+        let blockOneSquare;
+        let blockTwoSqaure;
+        let startRowPosition;
 
-        if (this.player === Player.WHITE){
-            let blockingPiece1 = {row:location.row+1,col:location.col};
-            let blockingPiece2 = {row:location.row+2,col:location.col};
-            if (location.row === 1) {
-                if (board.getPiece(blockingPiece1)){
-                    return [];
-                } else if (board.getPiece(blockingPiece2)) {
-                    return [Square.at(location.row + 1, location.col)];
-                } else {
-                    return [Square.at(location.row + 2, location.col),Square.at(location.row + 1, location.col)];
-                }
-            }
-            else {
-                if (board.getPiece(blockingPiece1)) {
-                    return [];
-                } else {
-                    return [Square.at(location.row + 1, location.col)];
-                }
-            }
+        if (this.player === Player.WHITE) {
+            blockOneSquare = Square.at(location.row+1,location.col);
+            blockTwoSqaure = Square.at(location.row+2, location.col);
+            startRowPosition = 1;
         }
         else {
-            let blockingPiece1 = {row:location.row-1,col:location.col};
-            let blockingPiece2 = {row:location.row-2,col:location.col};
-            if (location.row === 6) {
-                if (board.getPiece(blockingPiece1)){
-                    return [];
-                } else if (board.getPiece(blockingPiece2)) {
-                    return [Square.at(location.row - 1, location.col)];
-                } else {
-                    return [Square.at(location.row - 2, location.col),Square.at(location.row - 1, location.col)];
-                }
-            }
-            else {
-                if (board.getPiece(blockingPiece1)) {
-                    return [];
-                } else { 
-                    return [Square.at(location.row - 1, location.col)];
-                }
-            }
+            blockOneSquare = Square.at(location.row-1,location.col);
+            blockTwoSqaure = Square.at(location.row-2, location.col);
+            startRowPosition = 6;
+        }
+
+        if (board.getPiece(blockOneSquare)) {
+            return new Array(0);
+        }
+        else if (!board.getPiece(blockTwoSqaure) && location.row === startRowPosition) {
+            return new Array(blockOneSquare,blockTwoSqaure);
+        }
+        else {
+            return new Array(blockOneSquare);
         }
     }
 }
