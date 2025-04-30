@@ -10,14 +10,57 @@ export default class Rook extends Piece {
     getAvailableMoves(board) {
         let location = board.findPiece(this)
         let availableMoves=[];
-        for (let i=0; i<8; i++){
-            if (i !== location.row){
+        let friendlyBlockingPieces =[];
+        let friendlyColour;
+        let unfriendlyColour;
+
+        if (this.player === Player.WHITE) {
+            friendlyColour = Player.WHITE;
+            unfriendlyColour = Player.BLACK;
+        }
+        else {
+            friendlyColour = Player.BLACK;
+            unfriendlyColour = Player.WHITE;
+        }
+
+        for (let i=location.row+1; i<8; i++) {
+            if(!board.getPiece(Square.at(i,location.col))){
                 availableMoves.push(Square.at(i, location.col));
             }
-            if (i !== location.col) {
-                availableMoves.push(Square.at(location.row, i));
+            else if (board.getPiece(Square.at(i,location.col)).player === Player.unfriendlyColour) {
+                vailableMoves.push(Square.at(i, location.col));
+            }
+            else {
+                break
             }
         }
-       return availableMoves; 
+
+        for (let i=location.row-1; i>=0; i--) {
+            if(!board.getPiece(Square.at(i,location.col))){
+                availableMoves.push(Square.at(i, location.col));
+            }
+            else {
+                break
+            }
+        }
+
+        for (let i=location.col+1; i<8; i++) {
+            if(!board.getPiece(Square.at(location.row, i))){
+                availableMoves.push(Square.at(location.row, i));
+            }
+            else {
+                break
+            }
+        }
+
+        for (let i=location.col-1; i>=0; i--) {
+            if(!board.getPiece(Square.at(location.row,i))){
+                availableMoves.push(Square.at(location.row,i));
+            }
+            else {
+                break
+            }
+        }
+        return availableMoves; 
     }
 }

@@ -48,7 +48,7 @@ export default class Pawn extends Piece {
             takingPiecePositionRight = Square.at(location.row-1,location.col+1);
             opposingKing = new King(Player.WHITE);
         }
-
+        
         if (board.getPiece(takingPiecePositionLeft)&& board.getPiece(takingPiecePositionLeft).player === unfriendlyColour  ) {
             if(board.getPiece(takingPiecePositionLeft).constructor.name !== "King") {
                 availableMoves.push(takingPiecePositionLeft);
