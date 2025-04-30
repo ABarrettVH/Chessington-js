@@ -16,6 +16,8 @@ export default class Pawn extends Piece {
         let takingPiecePositionLeft;
         let startRowPosition;
         let friendlyColour;
+        let unfriendlyColour;
+        let opposingKing;
         const rowTop = 7;
         const rowBottom = 0;
         
@@ -30,8 +32,10 @@ export default class Pawn extends Piece {
             blockTwoSqaure = Square.at(location.row+2, location.col);
             startRowPosition = 1;
             friendlyColour = Player.WHITE;
+            unfriendlyColour = Player.BLACK;
             takingPiecePositionLeft = Square.at(location.row+1,location.col-1);
             takingPiecePositionRight = Square.at(location.row+1,location.col+1);
+            opposingKing = new King(Player.BLACK);
             
         }
         else {
@@ -39,15 +43,22 @@ export default class Pawn extends Piece {
             blockTwoSqaure = Square.at(location.row-2, location.col);
             startRowPosition = 6;
             friendlyColour = Player.BLACK;
+            unfriendlyColour = Player.WHITE;
             takingPiecePositionLeft = Square.at(location.row-1,location.col-1);
             takingPiecePositionRight = Square.at(location.row-1,location.col+1);
+            opposingKing = new King(Player.WHITE);
         }
 
-        if (board.getPiece(takingPiecePositionLeft)&& board.getPiece(takingPiecePositionLeft).player !== friendlyColour  ) {
-            availableMoves.push(takingPiecePositionLeft);
+        if (board.getPiece(takingPiecePositionLeft)&& board.getPiece(takingPiecePositionLeft).player === unfriendlyColour  ) {
+            if(board.getPiece(takingPiecePositionLeft).constructor.name !== "King") {
+                availableMoves.push(takingPiecePositionLeft);
+            }
         }
-        if (board.getPiece(takingPiecePositionRight)&& board.getPiece(takingPiecePositionRight).player !== friendlyColour ) {
-            availableMoves.push(takingPiecePositionRight);
+    
+        if (board.getPiece(takingPiecePositionRight)&& board.getPiece(takingPiecePositionRight).player === unfriendlyColour ) {
+            if(board.getPiece(takingPiecePositionRight).constructor.name !== "King") {
+                availableMoves.push(takingPiecePositionRight);
+            }
         }
 
         if (board.getPiece(blockOneSquare)||location.row > 7) {
@@ -55,11 +66,9 @@ export default class Pawn extends Piece {
         }
         else if (!board.getPiece(blockTwoSqaure) && location.row === startRowPosition) {
             availableMoves.push(blockOneSquare,blockTwoSqaure);
-            //return new Array(blockOneSquare,blockTwoSqaure);
         }
         else {
             availableMoves.push(blockOneSquare);
-            //return new Array(blockOneSquare);
         }
     return availableMoves;
     }
