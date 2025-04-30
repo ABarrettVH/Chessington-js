@@ -29,7 +29,16 @@ export default class Bishop extends Piece {
             if (availableSquare.col < 8 && availableSquare.row < 8) {
                 if (!board.getPiece(availableSquare)) {
                     availableMoves.push(availableSquare);
-                } else {
+                } 
+                else if ((board.getPiece(availableSquare)).player === unfriendlyColour) {
+                    if (board.getPiece(availableSquare).constructor.name === "King") {
+                        break;
+                    }
+                    else {
+                    availableMoves.push(availableSquare);
+                    break;
+                    } 
+                }                else {
                     break;
                 }
             }
@@ -39,7 +48,16 @@ export default class Bishop extends Piece {
             if (availableSquare.col < 8 && availableSquare.row >= 0) {
                 if (!board.getPiece(availableSquare)) {
                     availableMoves.push(availableSquare);
-                } else {
+                } 
+                else if ((board.getPiece(availableSquare)).player === unfriendlyColour) {
+                    if (board.getPiece(availableSquare).constructor.name === "King") {
+                        break;
+                    }
+                    else {
+                    availableMoves.push(availableSquare);
+                    break;
+                    } 
+                }                else {
                     break;
                 }
             }
@@ -49,7 +67,16 @@ export default class Bishop extends Piece {
             if (availableSquare.col >= 0 && availableSquare.row < 8) {
                 if (!board.getPiece(availableSquare)) {
                     availableMoves.push(availableSquare);
-                } else {
+                } 
+                else if ((board.getPiece(availableSquare)).player === unfriendlyColour) {
+                    if (board.getPiece(availableSquare).constructor.name === "King") {
+                        break;
+                    }
+                    else {
+                    availableMoves.push(availableSquare);
+                    break;
+                    } 
+                }                else {
                     break;
                 }
             }
@@ -59,12 +86,21 @@ export default class Bishop extends Piece {
             if (availableSquare.col >= 0 && availableSquare.row >= 0) {
                 if (!board.getPiece(availableSquare)) {
                     availableMoves.push(availableSquare);
-                } else {
+                } 
+                else if ((board.getPiece(availableSquare)).player === unfriendlyColour) {
+                    if (board.getPiece(availableSquare).constructor.name === "King") {
+                        break;
+                    }
+                    else {
+                    availableMoves.push(availableSquare);
+                    break;
+                    } 
+                }
+                else {
                     break;
                 }
             }
         }
-        console.log(availableMoves);
         return availableMoves;
     }
 }
