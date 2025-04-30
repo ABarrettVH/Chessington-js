@@ -24,61 +24,105 @@ export default class Rook extends Piece {
             unfriendlyColour = Player.WHITE;
         }
 
-        for (let i=location.row+1; i<8; i++) {
-            availableSquare = Square.at(i,location.col);
+        function populateAvailableMoves (availableMoves,availableSquare,unfriendlyColour) {
             if (!board.getPiece(availableSquare)) {
                 availableMoves.push(availableSquare);
+                return availableMoves;
             }
             else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
                 availableMoves.push(availableSquare);
-                break
+                return availableMoves;
             }
             else {
-                break
+                return availableMoves;
             }
+        }
+
+        for (let i=location.row+1; i<8; i++) {
+            let counter = availableMoves.length;
+            availableSquare = Square.at(i,location.col);
+            availableMoves = populateAvailableMoves(availableMoves,availableSquare,unfriendlyColour);
+            counter ++;
+            if (counter !== availableMoves.length) {
+                break;
+            }
+            // if (!board.getPiece(availableSquare)) {
+            //     availableMoves.push(availableSquare);
+            // }
+            // else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
+            //     availableMoves.push(availableSquare);
+            //     break
+            // }
+            // else {
+            //     break
+            // }
         }
 
         for (let i=location.row-1; i>=0; i--) {
+            let counter = availableMoves.length;
             availableSquare = Square.at(i,location.col);
-            if (!board.getPiece(availableSquare)) {
-                availableMoves.push(availableSquare);
+            availableMoves = populateAvailableMoves(availableMoves,availableSquare,unfriendlyColour);
+            counter ++;
+            if (counter !== availableMoves.length) {
+                break;
             }
-            else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
-                availableMoves.push(availableSquare);
-                break
-            }
-            else {
-                break
-            }
+
+            // if (!board.getPiece(availableSquare)) {
+            //     availableMoves.push(availableSquare);
+            // }
+            // else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
+            //     availableMoves.push(availableSquare);
+            //     break
+            // }
+            // else {
+            //     break
+            // }
         }
 
         for (let i=location.col+1; i<8; i++) {
+            let counter = availableMoves.length;
             availableSquare = Square.at(location.row, i);
-            if (!board.getPiece(availableSquare)) {
-                availableMoves.push(availableSquare);
+            availableMoves = populateAvailableMoves(availableMoves,availableSquare,unfriendlyColour);
+            counter ++;
+            if (counter !== availableMoves.length) {
+                console.log(board.getPiece(availableSquare));
+                break;
             }
-            else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
-                availableMoves.push(availableSquare);
-                break
-            }
-            else {
-                break
-            }
+            
+
+            // if (!board.getPiece(availableSquare)) {
+            //     availableMoves.push(availableSquare);
+            // }
+            // else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
+            //     availableMoves.push(availableSquare);
+            //     break
+            // }
+            // else {
+            //     break
+            // }
         }
 
         for (let i=location.col-1; i>=0; i--) {
+            let counter = availableMoves.length;
             availableSquare = Square.at(location.row, i);
-            if (!board.getPiece(availableSquare)) {
-                availableMoves.push(availableSquare);
+            availableMoves = populateAvailableMoves(availableMoves,availableSquare,unfriendlyColour);
+            counter ++;
+            if (counter !== availableMoves.length) {
+                break;
             }
-            else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
-                availableMoves.push(availableSquare);
-                break
-            }
-            else {
-                break
-            }
+
+            // if (!board.getPiece(availableSquare)) {
+            //     availableMoves.push(availableSquare);
+            // }
+            // else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
+            //     availableMoves.push(availableSquare);
+            //     break
+            // }
+            // else {
+            //     break
+            // }
         }
+        console.log(availableMoves);
         return availableMoves; 
     }
 }
