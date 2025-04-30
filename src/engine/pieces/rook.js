@@ -43,19 +43,14 @@ export default class Rook extends Piece {
             availableSquare = Square.at(i,location.col);
             availableMoves = populateAvailableMoves(availableMoves,availableSquare,unfriendlyColour);
             counter ++;
-            if (counter !== availableMoves.length) {
+            if (board.getPiece(availableSquare)) {
+                if (board.getPiece(availableSquare).player === unfriendlyColour) {
+                    break;
+                }
+            }
+            if (counter !== availableMoves.length)  {
                 break;
             }
-            // if (!board.getPiece(availableSquare)) {
-            //     availableMoves.push(availableSquare);
-            // }
-            // else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
-            //     availableMoves.push(availableSquare);
-            //     break
-            // }
-            // else {
-            //     break
-            // }
         }
 
         for (let i=location.row-1; i>=0; i--) {
@@ -63,20 +58,14 @@ export default class Rook extends Piece {
             availableSquare = Square.at(i,location.col);
             availableMoves = populateAvailableMoves(availableMoves,availableSquare,unfriendlyColour);
             counter ++;
-            if (counter !== availableMoves.length) {
+            if (board.getPiece(availableSquare)) {
+                if (board.getPiece(availableSquare).player === unfriendlyColour) {
+                    break;
+                }
+            }
+            if (counter !== availableMoves.length)  {
                 break;
             }
-
-            // if (!board.getPiece(availableSquare)) {
-            //     availableMoves.push(availableSquare);
-            // }
-            // else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
-            //     availableMoves.push(availableSquare);
-            //     break
-            // }
-            // else {
-            //     break
-            // }
         }
 
         for (let i=location.col+1; i<8; i++) {
@@ -84,22 +73,14 @@ export default class Rook extends Piece {
             availableSquare = Square.at(location.row, i);
             availableMoves = populateAvailableMoves(availableMoves,availableSquare,unfriendlyColour);
             counter ++;
-            if (counter !== availableMoves.length) {
-                console.log(board.getPiece(availableSquare));
+            if (board.getPiece(availableSquare)) {
+                if (board.getPiece(availableSquare).player === unfriendlyColour) {
+                    break;
+                }
+            }
+            if (counter !== availableMoves.length)  {
                 break;
             }
-            
-
-            // if (!board.getPiece(availableSquare)) {
-            //     availableMoves.push(availableSquare);
-            // }
-            // else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
-            //     availableMoves.push(availableSquare);
-            //     break
-            // }
-            // else {
-            //     break
-            // }
         }
 
         for (let i=location.col-1; i>=0; i--) {
@@ -107,22 +88,15 @@ export default class Rook extends Piece {
             availableSquare = Square.at(location.row, i);
             availableMoves = populateAvailableMoves(availableMoves,availableSquare,unfriendlyColour);
             counter ++;
-            if (counter !== availableMoves.length) {
+            if (board.getPiece(availableSquare)) {
+                if (board.getPiece(availableSquare).player === unfriendlyColour) {
+                    break;
+                }
+            }
+            if (counter !== availableMoves.length)  {
                 break;
             }
-
-            // if (!board.getPiece(availableSquare)) {
-            //     availableMoves.push(availableSquare);
-            // }
-            // else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
-            //     availableMoves.push(availableSquare);
-            //     break
-            // }
-            // else {
-            //     break
-            // }
         }
-        console.log(availableMoves);
         return availableMoves; 
     }
 }
