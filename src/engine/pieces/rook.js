@@ -29,8 +29,9 @@ export default class Rook extends Piece {
             if (!board.getPiece(availableSquare)) {
                 availableMoves.push(availableSquare);
             }
-            else if (board.getPiece(availableSquare).player === Player.unfriendlyColour) {
+            else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
                 availableMoves.push(availableSquare);
+                break
             }
             else {
                 break
@@ -42,8 +43,9 @@ export default class Rook extends Piece {
             if (!board.getPiece(availableSquare)) {
                 availableMoves.push(availableSquare);
             }
-            else if (board.getPiece(availableSquare).player === Player.unfriendlyColour) {
+            else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
                 availableMoves.push(availableSquare);
+                break
             }
             else {
                 break
@@ -55,8 +57,9 @@ export default class Rook extends Piece {
             if (!board.getPiece(availableSquare)) {
                 availableMoves.push(availableSquare);
             }
-            else if (board.getPiece(availableSquare).player === Player.unfriendlyColour) {
+            else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
                 availableMoves.push(availableSquare);
+                break
             }
             else {
                 break
@@ -68,8 +71,9 @@ export default class Rook extends Piece {
             if (!board.getPiece(availableSquare)) {
                 availableMoves.push(availableSquare);
             }
-            else if (board.getPiece(availableSquare).player === Player.unfriendlyColour) {
+            else if (board.getPiece(availableSquare).player === unfriendlyColour && board.getPiece(availableSquare).constructor.name !== "King") {
                 availableMoves.push(availableSquare);
+                break
             }
             else {
                 break
