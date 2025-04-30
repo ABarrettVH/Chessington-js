@@ -27,25 +27,41 @@ export default class Bishop extends Piece {
         for (let i = 1; i <8; i++) {
             availableSquare = Square.at(location.row+i,location.col+i);
             if (availableSquare.col < 8 && availableSquare.row < 8) {
-            availableMoves.push(availableSquare);
+                if (!board.getPiece(availableSquare)) {
+                    availableMoves.push(availableSquare);
+                } else {
+                    break;
+                }
             }
         }
         for (let i = 1; i <8; i++) {
             availableSquare = Square.at(location.row-i,location.col+i);
             if (availableSquare.col < 8 && availableSquare.row >= 0) {
-            availableMoves.push(availableSquare);
+                if (!board.getPiece(availableSquare)) {
+                    availableMoves.push(availableSquare);
+                } else {
+                    break;
+                }
             }
         }
         for (let i = 1; i <8; i++) {
             availableSquare = Square.at(location.row+i,location.col-i);
             if (availableSquare.col >= 0 && availableSquare.row < 8) {
-            availableMoves.push(availableSquare);
+                if (!board.getPiece(availableSquare)) {
+                    availableMoves.push(availableSquare);
+                } else {
+                    break;
+                }
             }
         }
         for (let i = 1; i <8; i++) {
             availableSquare = Square.at(location.row-i,location.col-i);
             if (availableSquare.col >= 0 && availableSquare.row >= 0) {
-            availableMoves.push(availableSquare);
+                if (!board.getPiece(availableSquare)) {
+                    availableMoves.push(availableSquare);
+                } else {
+                    break;
+                }
             }
         }
         console.log(availableMoves);
