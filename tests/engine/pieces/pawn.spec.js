@@ -46,12 +46,12 @@ describe('Pawn', () => {
         it('can move diagonally if there is a piece to take', () => {
             const pawn = new Pawn(Player.WHITE);
             const opposingPiece = new Rook(Player.BLACK);
-            board.setPiece(Square.at(4, 4), pawn);
-            board.setPiece(Square.at(5, 3), opposingPiece);
+            board.setPiece(Square.at(5,5), pawn);
+            board.setPiece(Square.at(6,4), opposingPiece);
 
             const moves = pawn.getAvailableMoves(board);
 
-            moves.should.deep.include(Square.at(5, 3));
+            moves.should.deep.include(Square.at(6,4));
         });
 
         it('cannot move diagonally if there is no piece to take', () => {
